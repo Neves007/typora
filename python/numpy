@@ -1,0 +1,124 @@
+# 属性
+
+| numpy属性 | 含义     |
+| --------- | -------- |
+| dim       | 维度     |
+| shape     | 形状     |
+| size      | 元素总量 |
+
+# 创建
+
+```python
+a=numpy.array([[2,3,4][5,6,7]],dtype=np.float)	
+
+np.zero((3,4))  # 零矩阵
+np.zero((3,4))  # 几乎为0的矩阵
+np.arange(起始,结束,步长).reshape((3,4))  # 范围
+np.linspace(起始,结束,分为多少段)  #线段
+
+numpy.random.randn(n) #服从均值为0 方差为1 的高斯分布     
+# X = delta *Z + mu       mu:均值  delta:方差   N(mu,delta^2)
+2*numpy.random.randn(n)+10	
+
+```
+
+## 运算
+
+```python
+a-b  # 矩阵元素对应相减
+a+b  # 矩阵元素对应相加
+a*b  # 矩阵元素对应相乘
+b**  # 矩阵元素平方
+
+b<3  # 矩阵元素是否小于3
+
+np.dot(a,b) #矩阵乘法
+a.dot(b)
+
+
+```
+
+
+
+``` python
+#axis运算方向
+np.sum(a)  #求和
+np.min(a)  #求最小值
+np.max(a)  #求最大值
+np.sum(a,axis=0)  #；每一行加起来 
+np.sum(a,axis=1)  #；每一列加起来
+np.min(a,axis=0)  #行上求最小值
+np.max(a,axis=0)  #行上求最大值
+
+np.argmin(a) #最小值索引
+np.argmax(a) #最大值索引
+np.mean(a) #矩阵平均值
+np.median(a) #矩阵中位数
+np.cumsum(a) #累加
+np.cumdiff(a) #累差 ，每两个数的差
+np.nonzero(a) #非零数 的位置（行，列）
+np.sort(a) #逐行排序
+np.transpose(a) # 矩阵的转置
+a.T
+np.clip(a,6,9) #矩阵咸鱼6的都等于6，大于9的数都等于9
+```
+
+# 索引
+
+```python
+#先索引行
+A = np.arrange(3,15).reshap(3,4)
+A[0]  #第零行
+A[2][2] #第二行第二个数
+A[2,2]
+A[:,1] # 第1列所有数
+A[1,:] # 第1行所有数
+A[1,0:2] # 第1行从0到2所有数
+
+for row in A:
+    print(row) #迭代行
+
+
+for col in A.T:
+    print(row) #迭代列
+
+for item A.flat:
+    print(item)  #迭代每一个元素
+
+```
+
+# 合并
+
+```python
+A=np.array([1,1,1])
+B=np.array([2,2,2])
+
+C=np.vstack((A,B)) # vertical stack垂直合并
+D=np.hstack((A,B)) # horizontal stack水平合并
+
+#序列是没法转置的  A.T还是一行不会变成一列
+#用reshape转换也行
+A[np.newaxis,:]  #行上增加一个维度，值赋值到列上
+
+C = np.concatenate((A,A,B),axis=0)  #行上合并
+```
+
+# 分割
+
+```python
+A = np.arrange(12).reshape(3,4)
+
+np.split(A,2,axis=1)  #把A 纵向平均分为2块
+np.array_split(A,3,axis=1)  #把A 进行纵向不平均分割。 2，1，1
+np.vsplit(A,3) #纵向分割
+np.hsplit(A,2) #横向分割
+```
+
+# 赋值
+
+```python
+a = np.arange(4)
+b=a  # b和a是同一个array
+c=a.copy() # 赋值
+```
+
